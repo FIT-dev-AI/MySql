@@ -1,0 +1,8 @@
+com\example\productmanagement\controller\HomeController.class
+com\example\productmanagement\repository\ProductRepository.class
+com\example\productmanagement\ProductManagementApplication.class
+com\example\productmanagement\model\Category.class
+com\example\productmanagement\model\Product.class
+com\example\productmanagement\repository\CategoryRepository.class
+com\example\productmanagement\controller\ProductController.class
+com\example\productmanagement\service\ProductService.class
