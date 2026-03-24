@@ -4,6 +4,7 @@ import com.example.productmanagement.model.Category;
 import com.example.productmanagement.model.Product;
 import com.example.productmanagement.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,22 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping
-    public String listProducts(Model model) {
-        model.addAttribute("products", productService.getAllProducts());
+    public String listProducts(
+            @RequestParam(required = false, defaultValue = "") String keyword,
+            @RequestParam(required = false, defaultValue = "0") Long categoryId,
+            @RequestParam(required = false, defaultValue = "asc") String sortDir,
+            @RequestParam(required = false, defaultValue = "0") int page,
+            Model model) {
+
+        Page<Product> productPage = productService.getProducts(keyword, categoryId, sortDir, page);
+
+        model.addAttribute("products", productPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", productPage.getTotalPages());
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("categoryId", categoryId);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("categories", productService.getAllCategories());
         return "products/list";
     }
 

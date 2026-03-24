@@ -216,6 +216,11 @@
                 You have been logged out successfully
             </div>
 
+            <!-- Register Success Message -->
+            <div th:if="${param.registered}" class="message success-message">
+                Registration successful. Please sign in.
+            </div>
+
             <!-- Login Form -->
             <form th:action="@{/login}" method="POST">
                 <!-- Username Field -->
@@ -248,6 +253,11 @@
                 <!-- Sign In Button -->
                 <button type="submit" class="login-btn">Sign In</button>
             </form>
+
+            <p style="text-align:center; margin-top:14px; font-size:14px;">
+                Don't have an account?
+                <a href="/register" style="color:#0f3460; font-weight:600; text-decoration:none;">Register now</a>
+            </p>
 
             <p class="footer-text">© 2026 Product Management System</p>
         </div>

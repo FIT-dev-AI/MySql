@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Product Management</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .register-container { width: 100%; max-width: 420px; }
+        .register-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 44px 36px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .logo { text-align: center; font-size: 44px; margin-bottom: 16px; }
+        .title { text-align: center; font-size: 28px; font-weight: 700; color: #1a1a2e; }
+        .subtitle { text-align: center; font-size: 14px; color: #888; margin: 8px 0 24px; }
+        .message {
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            background: #fee;
+            border-left: 4px solid #e74c3c;
+            color: #c0392b;
+        }
+        .form-group { margin-bottom: 14px; }
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #0f3460;
+            box-shadow: 0 0 0 3px rgba(15, 52, 96, 0.1);
+        }
+        .register-btn {
+            width: 100%;
+            padding: 13px;
+            margin-top: 8px;
+            background: linear-gradient(135deg, #0f3460 0%, #533483 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .register-btn:hover { opacity: 0.95; }
+        .back-link {
+            display: block;
+            margin-top: 14px;
+            text-align: center;
+            text-decoration: none;
+            color: #0f3460;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="register-container">
+    <div class="register-card">
+        <div class="logo">📝</div>
+        <h1 class="title">Create Account</h1>
+        <p class="subtitle">Register to use Product Management</p>
+
+        <div th:if="${error}" class="message" th:text="${error}"></div>
+
+        <form th:action="@{/register}" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Username"
+                       th:value="${username}" required>
+            </div>
+
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+
+            <div class="form-group">
+                <input type="password" name="confirmPassword" placeholder="Confirm password" required>
+            </div>
+
+            <button type="submit" class="register-btn">Register</button>
+        </form>
+
+        <a href="/login" class="back-link">Already have an account? Sign in</a>
+    </div>
+</div>
+</body>
+</html>

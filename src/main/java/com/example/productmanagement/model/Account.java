@@ -1,12 +1,10 @@
 package com.example.productmanagement.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import java.util.Collection;
 
 @Entity
 @Table(name = "account")
-@Data
 public class Account {
 
     @Id
@@ -26,15 +24,15 @@ public class Account {
     )
     private Collection<Role> roles;
 
-    public String getLoginName() {
-        return loginName;
-    }
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
-    public String getPassword() {
-        return password;
-    }
+    public String getLoginName() { return loginName; }
+    public void setLoginName(String loginName) { this.loginName = loginName; }
 
-    public Collection<Role> getRoles() {
-        return roles;
-    }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+
+    public Collection<Role> getRoles() { return roles; }
+    public void setRoles(Collection<Role> roles) { this.roles = roles; }
 }
